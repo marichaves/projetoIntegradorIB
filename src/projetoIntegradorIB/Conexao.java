@@ -35,7 +35,7 @@ public class Conexao {
 
 		System.out.println("Digite a idade do paciente:");
 		int pacienteIdade = scanner.nextInt();
-		scanner.nextLine(); // Consume the newline character
+		scanner.nextLine(); 
 
 		System.out.println(
 				"Digite o sexo biológico do paciente ('M' para masculino; 'F' para feminino; 'N' para não binário :");
@@ -46,7 +46,7 @@ public class Conexao {
 
 		System.out.println("Digite o CEP do paciente:");
 		int pacienteCep = scanner.nextInt();
-		scanner.nextLine(); // Consume the newline character
+		scanner.nextLine(); 
 
 		System.out.println("Digite a descrição da dose da vacina (1º dose; 2º dose; Dose de Reforço):");
 		String vacinaDose = scanner.nextLine();
@@ -118,6 +118,26 @@ public class Conexao {
 			System.out.println("Erro ao exibir relação: " + e.getMessage());
 		}
 	}
+	
+	public void exibirRelacaoIdadeVacina() {
+	    try {
+	        String query = "SELECT paciente_idade, vacina_nome FROM tbl_test";
+	        resultSet = statement.executeQuery(query);
+
+	        System.out.println("=== Relação entre Idade e Vacina ===");
+	        System.out.println("Idade\tVacina Nome");
+	        System.out.println("--------------------");
+
+	        while (resultSet.next()) {
+	            int pacienteIdade = resultSet.getInt("paciente_idade");
+	            String vacinaNome = resultSet.getString("vacina_nome");
+	            System.out.println(pacienteIdade + "\t" + vacinaNome);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Erro ao exibir relação: " + e.getMessage());
+	    }
+	}
+
 
 	public void fecharConexao() {
 		try {

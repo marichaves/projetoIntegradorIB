@@ -8,8 +8,10 @@ public class Testa {
 
 	    
 	  //  conexao.adicionarDadosConsole();
-	    conexao.exibirTabela();
+	   // conexao.exibirTabela();
 	    conexao.exibirRelacaoVacinaSexo();
+	    System.out.println();
+	    conexao.exibirRelacaoIdadeVacina();
 	    conexao.fecharConexao();
 	}
 
