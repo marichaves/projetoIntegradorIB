@@ -1,6 +1,12 @@
 package projetoIntegradorIB;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Conexao {
@@ -155,5 +161,89 @@ public class Conexao {
 			System.out.println("Erro ao fechar conexão: " + e.getMessage());
 		}
 	}
+	public void editarLinha(String pacienteId) {
+	    Scanner scanner = new Scanner(System.in);
+
+	    System.out.println("Digite a nova dose da vacina (1º dose; 2º dose; Dose de Reforço):");
+	    String novaVacinaDose = scanner.nextLine();
+
+	    System.out.println("Digite o novo nome da vacina (CoronaVac, AstraZeneca, Pfizer):");
+	    String novoVacinaNome = scanner.nextLine();
+
+	    try {
+	        String query = "UPDATE tbl_test SET vacina_descricao_dose = ?, vacina_nome = ? WHERE paciente_id = ?";
+	        PreparedStatement preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, novaVacinaDose);
+	        preparedStatement.setString(2, novoVacinaNome);
+	        preparedStatement.setString(3, pacienteId);
+
+	        int rowsAffected = preparedStatement.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Linha editada com sucesso!");
+	        } else {
+	            System.out.println("Não foi possível encontrar uma linha com o pacienteId especificado.");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Erro ao editar linha: " + e.getMessage());
+	    }
+	}
+	public void exibirLinha(String documentId) {
+	    try {
+	        String query = "SELECT * FROM tbl_test WHERE document_id = ?";
+	        PreparedStatement preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, documentId);
+	        resultSet = preparedStatement.executeQuery();
+
+	        ResultSetMetaData metaData = resultSet.getMetaData();
+	        int columnCount = metaData.getColumnCount();
+
+	        // Print column names
+	        for (int i = 1; i <= columnCount; i++) {
+	            System.out.print(metaData.getColumnName(i) + "\t");
+	        }
+	        System.out.println();
+
+	        // Print table data
+	        while (resultSet.next()) {
+	            for (int i = 1; i <= columnCount; i++) {
+	                System.out.print(resultSet.getString(i) + "\t");
+	            }
+	            System.out.println();
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Erro ao exibir linha: " + e.getMessage());
+	    }
+	}
+
+	public void confirmarExclusao(String documentId) {
+	    Scanner scanner = new Scanner(System.in);
+
+	    System.out.println("Deseja realmente excluir a linha selecionada? (S/N)");
+	    String confirmacao = scanner.nextLine();
+
+	    if (confirmacao.equalsIgnoreCase("S")) {
+	        excluirLinha(documentId);
+	    } else {
+	        System.out.println("Exclusão cancelada.");
+	    }
+	}
+
+	public void excluirLinha(String documentId) {
+	    try {
+	        String query = "DELETE FROM tbl_test WHERE document_id = ?";
+	        PreparedStatement preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, documentId);
+
+	        int rowsAffected = preparedStatement.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Linha excluída com sucesso!");
+	        } else {
+	            System.out.println("Não foi possível encontrar uma linha com o documentId especificado.");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Erro ao excluir linha: " + e.getMessage());
+	    }
+	}
+
 
 }
