@@ -7,7 +7,6 @@ public class Testa {
 	public static void main(String[] args) {
 		Conexao conexao = new Conexao();
 		conexao.conectar();
-
 //		conexao.adicionarDadosConsole();
 //		conexao.exibirTabela();
 //		conexao.exibirRelacaoVacinaSexo();
@@ -37,9 +36,7 @@ public class Testa {
 //	    String documentId = scanner.nextLine();
 //	    documentId = documentId.substring(0, Math.min(documentId.length(), 65));
 //	    conexao.exibirLinha(documentId);
-//	    conexao.confirmarExclusao(documentId);
-	    
-	    
+//	    conexao.confirmarExclusao(documentId);;
 		conexao.fecharConexao();
 	}
 
