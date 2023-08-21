@@ -6,4 +6,10 @@ In this project proposed by the Analysis and Systems Development course at the C
 Right after this, we will discuss the conceptual modeling of the database. We have identified the main entities: "Patient" and "Vaccine," along with their relationships. The "Patient" entity holds pertinent information such as the patient's name, age, gender, vaccines, doses, vaccination date, and the person's address. When creating the conceptual model, we assign the document_id as the primary key to ensure it remains an unchangeable record within our database.
 
 Here's the visual representation of the conceptual model:
-![Image Alt Text](assets/imagem1.png)
+![Image Alt Text](https://github.com/marichaves/projetoIntegradorIB/raw/main/assets/Imagem1.png)
+
+The cardinality between the "Patients" and "Vaccine" entities has been established, where the relationship between the two is "take," which can imply that: Patients have taken such vaccines. Using cardinality, we apply a one-to-many relationship to both patients and vaccines.
+
+Moving forward, we will observe how the logical modeling transforms the conceptual model into a relational database schema. We employed SQL language to create the "Patient" and "Vaccine" tables, defining the necessary primary and foreign keys to ensure data integrity.
+
+Here is the visual representation of the logical model of the applications implemented within the database:
