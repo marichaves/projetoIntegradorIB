@@ -13,3 +13,4 @@ The cardinality between the "Patients" and "Vaccine" entities has been establish
 Moving forward, we will observe how the logical modeling transforms the conceptual model into a relational database schema. We employed SQL language to create the "Patient" and "Vaccine" tables, defining the necessary primary and foreign keys to ensure data integrity.
 
 Here is the visual representation of the logical model of the applications implemented within the database:
+![Logical Model](https://github.com/marichaves/projetoIntegradorIB/raw/main/assets/Imagem2.png)
