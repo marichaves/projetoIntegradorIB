@@ -6,3 +6,4 @@ In this project proposed by the Analysis and Systems Development course at the C
 Right after this, we will discuss the conceptual modeling of the database. We have identified the main entities: "Patient" and "Vaccine," along with their relationships. The "Patient" entity holds pertinent information such as the patient's name, age, gender, vaccines, doses, vaccination date, and the person's address. When creating the conceptual model, we assign the document_id as the primary key to ensure it remains an unchangeable record within our database.
 
 Here's the visual representation of the conceptual model:
+![Image Alt Text](assets/imagem1.png)
